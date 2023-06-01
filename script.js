@@ -1,31 +1,29 @@
-"use strict";
 const btns = document.querySelectorAll("button");
 const displayMessages = document.getElementById("messages");
-const playerScoreDisplay = document.getElementById("playerScore");
+const plyrScoreDisplay = document.getElementById("playerScore");
 const compScoreDisplay = document.getElementById("computerScore");
-const playerWeaponDisplay = document.getElementById("playerWeapon");
-const computerWeaponDisplay = document.getElementById("computerWeapon");
+const playerSign = document.getElementById("playerSign");
+const computerSign = document.getElementById("computerSign");
 const weapons = ["rock", "paper", "scissors"];
+const weaponDisplay = {
+  rock: "✊",
+  paper: "🤚",
+  scissors: "✌️",
+};
+
 let playerScore = 0;
 let computerScore = 0;
 
-// btns.forEach((btn) => {
-//   btn.addEventListener("click", () => play(btn.className, getComputerChoice()));
-// });
-
 btns.forEach((btn) => {
-  if (btn.classList.contains("rock")) {
-    btn.addEventListener(
-      "click",
-      () => play(btn.className),
-      (playerWeaponDisplay.textContent = btn.value) ||
-        (computerWeaponDisplay.textContent = btn.value)
-    );
-  }
+  btn.addEventListener("click", () => {
+    play(btn.className);
+    playerSign.textContent = weaponDisplay[btn.className];
+  });
 });
 
 function play(playerChoice) {
   let computerChoice = getComputerChoice();
+  computerSign.textContent = weaponDisplay[computerChoice];
 
   if (playerScore < 5 && computerScore < 5) {
     if (
@@ -35,8 +33,8 @@ function play(playerChoice) {
     ) {
       playerScore++;
       displayScore();
+      displayMessages.textContent = `Yay! you win ${playerChoice} beats ${computerChoice}`;
     }
-
     if (
       (computerChoice === "paper" && playerChoice === "rock") ||
       (computerChoice === "rock" && playerChoice === "scissors") ||
@@ -44,23 +42,38 @@ function play(playerChoice) {
     ) {
       computerScore++;
       displayScore();
+      displayMessages.textContent = `Oh no you lose, ${computerChoice} beats ${playerChoice}`;
     }
     if (computerChoice === playerChoice) {
       displayMessages.textContent = `it's tie.`;
     } else if (playerScore === 5) {
       displayMessages.textContent = `YOU WON!`;
+      alert("YOU WON, play again?");
+      restartGame();
     } else if (computerScore === 5) {
       displayMessages.textContent = `YOU LOSE!`;
+      alert("Bro, you lost. play again?");
+      restartGame();
     }
   }
 }
 
+function restartGame() {
+  playerScore = 0;
+  computerScore = 0;
+  plyrScoreDisplay.textContent = `Player score: 0`;
+  compScoreDisplay.textContent = `Computer score: 0`;
+  playerSign.innerText = "❔";
+  computerSign.innerText = "❔";
+  displayMessages.textContent = "Click below to start!";
+}
+
 function getComputerChoice() {
-  const i = Math.floor(Math.random() * 3);
-  return weapons[i];
+  const getrandom = Math.floor(Math.random() * 3);
+  return weapons[getrandom];
 }
 
 function displayScore() {
-  playerScoreDisplay.textContent = `Player score: ${playerScore}`;
+  plyrScoreDisplay.textContent = `Player score: ${playerScore}`;
   compScoreDisplay.textContent = `Computer score: ${computerScore}`;
 }

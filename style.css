@@ -1,7 +1,16 @@
 body {
-  background-color: rgba(0, 0, 0, 0.853);
-  color: whitesmoke;
+  background-color: #1e293b;
+  color: #dddddd;
   text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+h1 {
+  font-family: "Roboto Mono", monospace;
+}
+
+h3,
+h4 {
+  font-weight: 400;
 }
 
 div button {
@@ -9,17 +18,11 @@ div button {
   height: 130px;
 }
 
-@media screen and (max-width: 500px) {
-  .btns {
-    width: 100%;
-  }
-}
-
 button {
   cursor: pointer;
   border: none;
   border-radius: 20px;
-  background-color: #393e46;
+  background-color: #334155;
   font-size: 50px;
   margin: 5px;
 }
@@ -40,9 +43,26 @@ button:active {
 
 .score-boxes {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 18px;
 }
 
-/* .score-box {
-} */ ;
+.sign {
+  font-size: 80px;
+}
+
+footer {
+  padding-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.fa-github {
+  font-size: 20px;
+  color: #cbd5e1;
+}
+
+.fa-github:hover {
+  transform: scale(1.2);
+}
