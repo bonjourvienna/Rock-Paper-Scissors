@@ -63,8 +63,6 @@ function restartGame() {
   computerScore = 0;
   plyrScoreDisplay.textContent = `Player score: 0`;
   compScoreDisplay.textContent = `Computer score: 0`;
-  playerSign.innerText = "❔";
-  computerSign.innerText = "❔";
   displayMessages.textContent = "Click below to start!";
 }
 
